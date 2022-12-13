@@ -21,7 +21,7 @@ PORT = int(os.environ.get('PORT', '8443'))
 logger = logging.getLogger(__name__)
 
 TOKEN = os.environ.get('TOKEN')
-
+print()
 name = ''
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -130,7 +130,7 @@ async def handle_invalid_button(update: Update, context: ContextTypes.DEFAULT_TY
     )
 
 
-async def search_item(update: Update) -> None:
+async def search_item(update: Update, message) -> None:
     query = update.callback_query
     await query.answer()
     query.data = query.data.lower()
@@ -277,6 +277,9 @@ async def one(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         if link:
             await query.edit_message_text('Connected...')
             for links in range(0, (len(link))):
+                if len(keyboard) > 25:
+                    del (keyboard[25:])
+                    break
                 if links % 2 != 0:
                     keyboard.append(
                         [
