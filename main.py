@@ -21,6 +21,7 @@ PORT = int(os.environ.get('PORT', '8443'))
 logger = logging.getLogger(__name__)
 
 TOKEN = os.environ.get('TOKEN')
+print()
 name = ''
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -35,7 +36,7 @@ START_ROUTES, END_ROUTES = range(2)
 ONE, TWO, THREE, FOUR = range(4)
 
 
-async def start(update: Update) -> int:
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     try:
         await update.message.reply_text(
             'Welcome To Terader Movie Hub the place where movie links meet!..../usage if you are having issues.')
@@ -54,7 +55,7 @@ async def callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         raise ApplicationHandlerStop
 
 
-async def movie(update: Update,) -> int:
+async def movie(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Send message on `/start`."""
     id = update.effective_message.text[3:]
     if update.effective_message.text[1:3] == 'm_':
@@ -129,7 +130,7 @@ async def handle_invalid_button(update: Update, context: ContextTypes.DEFAULT_TY
     )
 
 
-async def search_item(update: Update) -> None:
+async def search_item(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     await query.answer()
     query.data = query.data.lower()
@@ -187,7 +188,7 @@ async def search_item(update: Update) -> None:
             '☹This is not a valid command check /usage to know how to use this bot')
 
 
-async def one(update: Update,) -> int:
+async def one(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Show new choice of buttons"""
     query = update.callback_query
     data = query.data[1:]
