@@ -130,7 +130,7 @@ async def handle_invalid_button(update: Update, context: ContextTypes.DEFAULT_TY
     )
 
 
-async def search_item(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def search_item(update: Update) -> None:
     query = update.callback_query
     await query.answer()
     query.data = query.data.lower()
