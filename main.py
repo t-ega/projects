@@ -398,7 +398,7 @@ def main():
         listen="0.0.0.0",
         port=int(PORT),
         url_path=TOKEN,
-        webhook_url='https://lit-hamlet-51436.herokuapp.com/' + TOKEN
+        webhook_url='https://tmh-telegram-bot.onrender.com' + TOKEN
     )
 
 
